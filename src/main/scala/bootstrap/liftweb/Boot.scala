@@ -11,7 +11,7 @@ import sitemap._
 import Loc._
 import mapper._
 
-import com.gnotime.model._
+import com.timeconverting.model._
 import net.liftmodules.JQueryModule
 
 
@@ -39,7 +39,7 @@ class Boot {
     Schemifier.schemify(true, Schemifier.infoF _, User)
 
     // where to search snippet
-    LiftRules.addToPackages("com.gnotime")
+    LiftRules.addToPackages("com.timeconverting")
 
     // Build SiteMap
     def sitemap = SiteMap(

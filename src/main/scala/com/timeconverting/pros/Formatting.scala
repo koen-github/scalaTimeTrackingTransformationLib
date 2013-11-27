@@ -1,6 +1,6 @@
 package com.scala.gnotime
 import scala.xml._
-import com.gnotime.model._
+import com.timeconverting.model._
 
 
 object read_xml {
@@ -17,7 +17,7 @@ object read_xml {
     val gnotimeXmlPathname = scala.io.Source.fromFile("/home/koen/Dropbox/scalaTimeTrackingTransformationLib/example1.xml").mkString
     val gnotimeXml = XML.loadString(gnotimeXmlPathname)
 
-    // println(gnotimeXml \ "gtt:project-list" \ "@{file:/usr/share/gnotime/gtt.dtd}");
+    // println(gnotimeXml \ "gtt:project-list" \ "@{file:/usr/share/timeconverting/gtt.dtd}");
     transformXmlGnotimeToScalaModel(clearScope(gnotimeXml))
 
 

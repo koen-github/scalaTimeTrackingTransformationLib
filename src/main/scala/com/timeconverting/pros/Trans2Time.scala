@@ -1,10 +1,10 @@
-package com.gnotime.pros
+package com.timeconverting.pros
 
 import java.util.Date
-import com.gnotime.model.Types._
+import com.timeconverting.model.Types._
 import java.text.SimpleDateFormat
 
-object Transform2TJ {
+object Trans2Time {
   //val times is from ONE TASK INSIDE A PROJECT
   val times: Map[POSIXtime, POSIXtime] = Map(1385323207*1000L -> 1385325007*1000L,1385328607*1000L -> 1385330407*1000L,  1385319607*1000L -> 1385332207*1000L, 1387881307*1000L ->  1387882807*1000L)
  val duration  = times.map{x =>

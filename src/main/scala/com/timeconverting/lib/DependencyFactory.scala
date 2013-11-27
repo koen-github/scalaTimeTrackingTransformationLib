@@ -1,4 +1,4 @@
-package com.gnotime
+package com.timeconverting
 package lib
 
 import net.liftweb._

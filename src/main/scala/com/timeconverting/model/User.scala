@@ -1,4 +1,4 @@
-package com.gnotime
+package com.timeconverting
 package model
 
 import net.liftweb.mapper._

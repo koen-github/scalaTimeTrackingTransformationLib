@@ -1,11 +1,11 @@
-package com.gnotime
+package com.timeconverting
 package snippet
 
 import scala.xml.{NodeSeq, Text}
 import net.liftweb.util._
 import net.liftweb.common._
 import java.util.Date
-import com.gnotime.lib._
+import com.timeconverting.lib._
 import Helpers._
 
 import com.scala.gnotime.read_xml
