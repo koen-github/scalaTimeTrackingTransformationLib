@@ -2,6 +2,8 @@ package com.timeconverting.model
 
 object Types
 {  type POSIXtime = Long // POSIXtime: see http://en.wikipedia.org/wiki/Unix_time
+type UNIXtimeInMillis = Long // type alias, just to make clear what you mean with this Long. This is not needed, but it will make your code much more readable, without having to include comments!
+type UNIXtimeIntervalInMillis = Long
 }
 
 import Types._
