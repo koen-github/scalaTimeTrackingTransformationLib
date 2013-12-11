@@ -8,7 +8,10 @@ import java.util.Date
 import com.timeconverting.lib._
 import Helpers._
 import com.scala.gnotime.read_xml
-import com.timeconverting.model.{TasksTimingDataTransformer, TimeIntervalAbstract, Task, TasksTimingData}
+import com.timeconverting.model._
+import com.timeconverting.model.TimeIntervalAbstract
+import com.timeconverting.model.TasksTimingData
+import com.timeconverting.model.Task
 
 class Printing {
 
@@ -17,17 +20,26 @@ class Printing {
   {
    println(test)
     //in case of taskjuggler
-    val times = Map(1385323207*1000L -> 1385325007*1000L,1385328607*1000L -> 1385330407*1000L,  1385319607*1000L -> 1385332207*1000L, 1387881307*1000L ->  1387882807*1000L)
-   val input_data = TasksTimingData(
+    //SCENARIO 1:       (Lots of roundy times)
+   // val times = Map(1385323207*1000L -> 1385325007*1000L,1385328607*1000L -> 1385330407*1000L,  1385319607*1000L -> 1385332207*1000L, 1387881307*1000L ->  1387882807*1000L)
+   //SCEARIO 2: (half and uneven times)
+val times =
+      Map(
+        1386512266*1000L -> 1386515866*1000L,
+        1386530026*1000L -> 1386533146*1000L,
+        1386536686*1000L -> 1386538726*1000L,
+        1386531946*1000L -> 1386534766*1000L
+      )
+    val input_data = TasksTimingData(
       List(
         Task(
           times.toList.map(x=> TimeIntervalAbstract(x._1, x._2))
-        )),
-     1, 60
+        ))
+
     ) //wait, This is the transform function so this makes no sense. This must be input for the current function.
      //snapinterval: 1=align with full hours
     //granularity: 60=time parts must be 1 hour, 1 hour is 60 minutes
-   println( TasksTimingDataTransformer.transform(input_data, "SpecificTarget"))
+   println(TasksTimingDataTransformer.transform(input_data, TimingSystemSettings(30, 30)))
     "#list *" #> test.map{
       x=>
 
@@ -46,4 +58,45 @@ class Printing {
      }
   }
   //};
+  /*
+
+  BEFORE:
+/INPUT:
+ Map(
+1385323207*1000L -> 1385325007*1000L,
+1385328607*1000L -> 1385330407*1000L,
+1385319607*1000L -> 1385332207*1000L,
+1387881307*1000L ->  1387882807*1000L
+)
+
+
+//GRANULARITY 25
+List(
+TimeIntervalAbstract(1385323207000,1385324707000),
+TimeIntervalAbstract(1385328607000,1385330107000),
+TimeIntervalAbstract(1385319607000,1385331607000),
+TimeIntervalAbstract(1387881307000,1387882807000
+))
+
+//GRANULARITY 15
+
+List(
+TimeIntervalAbstract(1385323207000,1385325007000),
+TimeIntervalAbstract(1385328607000,1385330407000),
+TimeIntervalAbstract(1385319607000,1385332207000),
+TimeIntervalAbstract(1387881307000,1387882207000))
+
+/NEXT SCENARIO:
+
+ Map(
+1386512266*1000L -> 1386515866*1000L,
+1386530026*1000L -> 1386533146*1000L,
+1386536686*1000L -> 1386538726*1000L,
+)
+
+
+
+
+
+   */
 }
