@@ -30,16 +30,27 @@ val times =
         1386536686*1000L -> 1386538726*1000L,
         1386531946*1000L -> 1386534766*1000L
       )
-    val input_data = TasksTimingData(
+    val input_data_old = TasksTimingData(
       List(
         Task(
           times.toList.map(x=> TimeIntervalAbstract(x._1, x._2))
         ))
 
-    ) //wait, This is the transform function so this makes no sense. This must be input for the current function.
+    )
+
+    val input_data  = TasksTimingData(List(
+    Task(List(
+      TimeIntervalAbstract(0,3),
+      TimeIntervalAbstract(14,18),
+      TimeIntervalAbstract(21,29),
+      TimeIntervalAbstract(53,87)
+
+    ))))
+    //wait, This is the transform function so this makes no sense. This must be input for the current function.
      //snapinterval: 1=align with full hours
     //granularity: 60=time parts must be 1 hour, 1 hour is 60 minutes
-   println(TasksTimingDataTransformer.transform(input_data, TimingSystemSettings(30, 30)))
+   println(TasksTimingDataTransformer.transform(input_data, TimingSystemSettings(60, 5)))
+
     "#list *" #> test.map{
       x=>
 

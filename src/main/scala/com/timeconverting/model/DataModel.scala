@@ -1,7 +1,8 @@
 package com.timeconverting.model
 
 object Types
-{  type POSIXtime = Long // POSIXtime: see http://en.wikipedia.org/wiki/Unix_time
+{
+  type POSIXtime = Long // POSIXtime: see http://en.wikipedia.org/wiki/Unix_time
   type DurationInMillis = Long
 
 }
