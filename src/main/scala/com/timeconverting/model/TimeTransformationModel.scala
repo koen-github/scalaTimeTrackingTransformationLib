@@ -44,21 +44,36 @@ object TasksTimingDataTransformer {
       val TimingsDurations: List[POSIXtime] = interVals.intervals.map(_.duration)
       val thing: List[TimeIntervalAbstract] = interVals.intervals.map { times ⇒
         //  println(x.duration.toDouble/ttdTarget.granularity.toDouble)
+        /*
+        val newDuration = Math.round(times.duration / ttdTarget.granularity.toDouble) * ttdTarget.granularity
+        //val snapMinutes = Math.round(new Date(x.start).getMinutes/ttdTarget.snapInterval)*10
+        val endie = Math.round(times.end - (ttdTarget.granularity.toDouble / 2))
 
-        if (times.duration.toDouble / ttdTarget.granularity.toDouble != 1.0) {
+        val startie = endie - newDuration
 
-          val newDuration = Math.round(times.duration / ttdTarget.granularity.toDouble) * ttdTarget.granularity
-          //val snapMinutes = Math.round(new Date(x.start).getMinutes/ttdTarget.snapInterval)*10
-          val endie = Math.round(times.end - (ttdTarget.granularity.toDouble / 2))
+        TimeIntervalAbstract(startie, endie)
+*/
 
-          val startie = endie - newDuration
-
-          TimeIntervalAbstract(startie, endie)
-
+        val newDivider = (if (times.duration < ttdTarget.granularity) {
+          val test = (ttdTarget.granularity - (times.duration % ttdTarget.granularity)) + times.duration
+          times.duration + test
         } else {
-          // println("No changes"+x.start)
-          TimeIntervalAbstract(times.start, times.end)
-        }
+          if ((ttdTarget.granularity / 2) <= (times.duration % ttdTarget.granularity)) {
+
+            times.duration + (times.duration % ttdTarget.granularity)
+          } else {
+            times.duration - (times.duration % ttdTarget.granularity)
+          }
+        })
+
+        val newDuration2 = (newDivider / ttdTarget.granularity) * ttdTarget.granularity
+        //val snapMinutes = Math.round(new Date(x.start).getMinutes/ttdTarget.snapInterval)*10
+        val endie2 = times.end - (ttdTarget.granularity / 2)
+
+        val startie2 = endie2 - newDuration2
+
+        TimeIntervalAbstract(startie2, endie2)
+
       }
       println(TimingsDurations)
       println(thing)

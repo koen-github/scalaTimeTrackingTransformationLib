@@ -36,10 +36,10 @@ class Printing {
 
       val input_data = TasksTimingData(List(
         Task(List(
+
           TimeIntervalAbstract(0, 3),
           TimeIntervalAbstract(14, 18),
-          TimeIntervalAbstract(21, 29),
-          TimeIntervalAbstract(53, 87)))))
+          TimeIntervalAbstract(21, 29)))))
       //wait, This is the transform function so this makes no sense. This must be input for the current function.
       //snapinterval: 1=align with full hours
       //granularity: 60=time parts must be 1 hour, 1 hour is 60 minutes
